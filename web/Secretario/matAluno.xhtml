@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="resources/css/estilos.css"/>
+        <title>Sistema de Controle Acadêmico - Matricular Aluno</title>
+    </h:head>
+    <body> 
+        <h:form id="formPrin" title="Matrícula do Aluno">
+            <div class="ui-fluid">
+                <p:growl autoUpdate="true" id="messages" />
+                <p:panel id="panelPrin" header="Matrícula do Aluno">
+
+                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+                    <p:dialog widgetVar="statusDialog" 
+                              modal="true" 
+                              draggable="false" 
+                              closable="false" resizable="false" showHeader="false">
+                        <p:graphicImage value="/images/loadingbar.gif" />  
+                    </p:dialog>
+
+                    <p:panel id="panel1" header="Dados Cadastrais">
+                        <p:panelGrid id="panelCad" columns="4" 
+                                     columnClasses="ui-grid-col-1,ui-grid-col-7, ui-grid-col-2, ui-grid-col-2" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">  
+                            <p:outputLabel value="Nome: *" style="font-weight:bold"/>  
+                            <p:inputText value="#{mbMatALu.aluno.nome}" 
+                                         id="nome"
+                                         maxlength="100" 
+                                         required="true" 
+                                         requiredMessage="Campo 'Nome' obrigatório!!!"/> 
+
+                            <p:outputLabel for="dtNasc" 
+                                           value="Data de Nascimento:" 
+                                           style="font-weight:bold"/>
+                            <p:calendar id="dtNasc" 
+                                        value="#{mbMatALu.aluno.dtNasc}" 
+                                        pattern="dd.MM.yyyy" 
+                                        mask="true" 
+                                        size="10"
+                                        required="true"
+                                        requiredMessage="Campo 'Data de Nascimento' obrigatório!!!"/>  
+                        </p:panelGrid>
+
+                        <p:panelGrid id="panelCad2" columns="7"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-3,
+                                     ui-grid-col-1,ui-grid-col-2,
+                                     ui-grid-col-1,ui-grid-col-2,
+                                     ui-grid-col-2" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+
+                            <p:outputLabel for="sexo" value="Sexo:" style="font-weight:bold"/>
+                            <p:selectOneRadio id="sexo" 
+                                              value="#{mbMatALu.aluno.sexo}"
+                                              required="true"
+                                              requiredMessage="Campo 'Sexo' obrigatório!!!">
+                                <f:selectItem itemLabel="Feminino" 
+                                              itemValue="1" />
+                                <f:selectItem itemLabel="Masculino" 
+                                              itemValue="2" />
+                            </p:selectOneRadio>  
+
+                            <p:outputLabel value="CPF: *" style="font-weight:bold"/>
+                            <p:inputMask id="cpf" value="#{mbMatALu.aluno.cpf}" 
+                                         mask="999.999.999-99" 
+                                         size="11"
+                                         required="true"
+                                         requiredMessage="Campo 'CPF' obrigatório!!!"
+                                         validatorMessage="CPF inválido!!!">
+                                <f:validator validatorId="validator.CpfValidator" />
+                            </p:inputMask> 
+
+                            <p:outputLabel value="RG: *" style="font-weight:bold"/>
+                            <p:inputMask id="rg" 
+                                         value="#{mbMatALu.aluno.rg}" 
+                                         mask="99.999.999-9"
+                                         size="12"
+                                         required="true"
+                                         requiredMessage="Campo 'RG' obrigatório!!!"/>  
+                        </p:panelGrid>
+
+                        <p:panelGrid id="panelCad3" columns="5"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-2,
+                                     ui-grid-col-1,ui-grid-col-2,
+                                     ui-grid-col-9" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+                            <p:outputLabel value="Telefone: *" style="font-weight:bold"/>
+                            <p:inputMask id="telefone" 
+                                         value="#{mbMatALu.aluno.telefone}" 
+                                         mask="(99)99999-9999"
+                                         size="15"
+                                         required="true"
+                                         requiredMessage="Campo 'Telefone' obrigatório!!!"/>  
+
+                            <p:outputLabel value="Celular:" style="font-weight:bold"/>
+                            <p:inputMask id="celular" 
+                                         value="#{mbMatALu.aluno.celular}" 
+                                         mask="(99)99999-9999"
+                                         size="15"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid id="panelCad4" columns="3"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-5,
+                                     ui-grid-col-6" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+                            <p:outputLabel value="Email: *" style="font-weight:bold"/>
+                            <p:inputText id="email" 
+                                         value="#{mbMatALu.aluno.email}" 
+                                         label="email"
+                                         size="50"
+                                         required="true"
+                                         requiredMessage="Campo 'Email' obrigatório!!!"
+                                         validatorMessage="E-mail inválido!!!">
+                                <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/>
+                            </p:inputText>
+                        </p:panelGrid>
+                    </p:panel>
+
+                    <p:separator/>
+
+                    <p:panel id="panel2" header="Endereço">
+                        <p:panelGrid id="panelEnd" columns="3"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-2,
+                                                    ui-grid-col-9" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:outputLabel value="CEP: *" style="font-weight:bold"/>
+                            <h:panelGroup>
+                                <p:inputMask id="cep" 
+                                             value="#{mbMatALu.endereco.cep}" 
+                                             mask="99999-999"
+                                             size="9"
+                                             required="true"
+                                             requiredMessage="Campo 'CEP' obrigatório!!!"/> 
+
+                                <p:commandButton id="buscaCepBtn"
+                                                 value="Buscar" 
+                                                 process="cep @this"
+                                                 actionListener="#{mbMatALu.buscaEndereco(mbMatALu.endereco.cep)}" 
+                                                 update="panel2"
+                                                 icon="ui-icon-refresh"/>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid id="panelEnd2" columns="6"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-5,
+                                     ui-grid-col-1,ui-grid-col-1,
+                                     ui-grid-col-1,ui-grid-col-3" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+                            <p:outputLabel value="Rua:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.logradouro}" 
+                                         id="logradouro"
+                                         size="80"/>
+
+                            <p:outputLabel value="Nº:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.numero}" 
+                                         id="numero"
+                                         maxlength="10" 
+                                         size="10"/> 
+
+                            <p:outputLabel value="Complemento:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.comple}" 
+                                         id="complemento"
+                                         size="20"
+                                         maxlength="20"/> 
+                        </p:panelGrid>
+
+                        <p:panelGrid id="panelEnd3" columns="7"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-3,
+                                     ui-grid-col-1,ui-grid-col-3,
+                                     ui-grid-col-1,ui-grid-col-1,
+                                     ui-grid-col-4" 
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+                            <p:outputLabel value="Bairro:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.bairro}" 
+                                         id="bairro"
+                                         maxlength="50" 
+                                         size="50"/>
+
+                            <p:outputLabel value="Cidade:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.cidade}" 
+                                         id="cidade"
+                                         maxlength="50" 
+                                         size="50"/>
+
+                            <p:outputLabel value="Estado:" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.endereco.estado}" 
+                                         id="estado"
+                                         maxlength="2" 
+                                         size="2"/>
+                        </p:panelGrid>
+                    </p:panel>
+
+                    <p:blockUI block="panel2" trigger="buscaCepBtn" />
+
+                    <p:separator/>
+
+                    <p:panel id="panel3" header="Curso">
+                        <p:panelGrid id="panelCurso" columns="6"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-4,
+                                     ui-grid-col-1,ui-grid-col-2,
+                                     ui-grid-col-2,ui-grid-col-1"  
+                                     layout="grid" styleClass="ui-panelgrid-blank">
+
+                            <p:outputLabel for="curso" value="Curso: " style="font-weight:bold"/>
+                            <p:selectOneMenu id="curso"
+                                             value="#{mbMatALu.curso}" 
+                                             style="width:300px">
+                                <p:ajax listener="#{mbMatALu.onCursoChange}" update="turma" />
+                                <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>
+                                <f:selectItems value="#{mbMatALu.cursos}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="turma" value="Turma: " style="font-weight:bold"/>
+                            <p:selectOneMenu id="turma" 
+                                             value="#{mbMatALu.turma}" 
+                                             style="width:150px">
+                                <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{mbMatALu.turmas}" />
+                            </p:selectOneMenu> 
+
+                            <p:outputLabel value="Valor da Matrícula: R$" style="font-weight:bold"/>
+                            <p:inputText value="#{mbMatALu.valorMat}" 
+                                         id="valorMat"
+                                         maxlength="10" 
+                                         size="10">
+                            </p:inputText>
+                            <p:message for="valorMat" display="icon"/>
+                        </p:panelGrid>
+                    </p:panel>
+
+                    <p:separator/>
+                    <p:panelGrid id="panelFinal" columns="2"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-10"  
+                                 layout="grid" styleClass="ui-panelgrid-blank">
+
+                        <p:commandButton value="Finalizar" 
+                                         icon="ui-icon-star"  
+                                         action="#{mbMatALu.finaliza()}" />
+
+                    </p:panelGrid>
+                </p:panel>
+            </div>
+        </h:form>
+    </body>
+</html>

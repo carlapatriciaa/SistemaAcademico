@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" href="resources/css/estilos.css"/>
+        <title>Sistema de Controle Acadêmico</title>
+    </h:head>
+    <body> 
+        <h:form>
+            <div class="ui-fluid">
+                <p:panel header="Sistema de Controle Acadêmico">
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" 
+                                 layout="grid" styleClass="ui-panelgrid-blank"> 
+
+                        <p:ajaxStatus onstart="PF('statusDialog2').show()" onsuccess="PF('statusDialog2').hide()" />
+
+                        <p:dialog widgetVar="statusDialog2" 
+                                  modal="true" 
+                                  draggable="false" 
+                                  closable="false" resizable="false" showHeader="false">
+                            <p:graphicImage value="/images/loadingbar.gif" />  
+                        </p:dialog>
+
+                        <p:menu toggleable="true">
+                            <p:menuitem value="Materiais" icon="ui-icon-star" />
+                            <p:separator/>
+                            <p:submenu label="Atividades Complementares">
+                                <p:menuitem value="Upload" icon="ui-icon-star" />
+                                <p:menuitem value="Download" icon="ui-icon-star" />
+                            </p:submenu>
+                            <p:separator/>
+                            <p:submenu label="Registrar">
+                                <p:menuitem value="Conteúdo de Aula" icon="ui-icon-star" />
+                                <p:menuitem value="Notas" icon="ui-icon-star" />
+                                <p:menuitem value="Frequência" icon="ui-icon-star" />
+                            </p:submenu>
+                            <p:separator/>
+                            <p:menuitem value="Fórum" icon="ui-icon-star" />
+                            <p:separator/>
+                            <p:menuitem value="Alterar Senha" icon="ui-icon-star"
+                                        action="/alterarSenha.xhtml" />
+                        </p:menu>
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-1,ui-grid-col-11" 
+                                 layout="grid" styleClass="ui-panelgrid-blank"> 
+
+                    <p:commandButton value="Sair" 
+                                     icon="ui-icon-star"  
+                                     action="#{mbUsu.doLogout()}" 
+                                     ajax="false"/>
+                    </p:panelGrid>
+                </p:panel>
+            </div>
+        </h:form>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" href="resources/css/estilos.css"/>
+        <title>Sistema de Controle Acadêmico</title>
+    </h:head>
+    <body>
+        <h:form>
+            <div class="ui-fluid">
+                <p:panel header="Sistema de Controle Acadêmico">
+                    <p:panel header="Secretário"> 
+                        
+                        <p:outputLabel value="Matrícula realizada com sucesso!!!" style="font-weight:bold"/>
+                        
+                        <p:panelGrid id="pgNovo" columns="2"
+                                     columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                     layout="grid" styleClass="ui-panelgrid-blank"> 
+                            <p:commandButton value="Nova Matrícula" 
+                                             icon="ui-icon-star" 
+                                             action="/Secretario/matAluno.xhtml"
+                                             ajax="false"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid id="pgNovo2" columns="2"
+                                     columnClasses="ui-grid-col-1,ui-grid-col-11"
+                                     layout="grid" styleClass="ui-panelgrid-blank"> 
+                            <p:commandButton value="Sair" 
+                                             icon="ui-icon-star"  
+                                             action="#{mbUsu.doLogout()}" 
+                                             ajax="false"/>
+                        </p:panelGrid>
+                    </p:panel>
+                </p:panel>
+            </div>
+        </h:form>
+    </body>
+</html>

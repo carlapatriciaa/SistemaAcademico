@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2017 13:56:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="SistemaAcademico" name="com.pospuc.sisacad.model.EnderecoAluno" optimistic-lock="version" table="Endereco">
+        <id name="idAluno" type="java.lang.Integer">
+            <column name="idAluno"/>
+            <generator class="assigned"/> 
+        </id>
+        <property name="logradouro" type="string">
+            <column length="120" name="logradouro" not-null="true"/>
+        </property>
+        <property name="numero" type="java.lang.Integer">
+            <column name="numero" not-null="true"/>
+        </property>
+        <property name="comple" type="string">
+            <column length="20" name="comple"/>
+        </property>
+        <property name="bairro" type="string">
+            <column length="50" name="bairro" not-null="true"/>
+        </property>
+        <property name="cidade" type="string">
+            <column length="50" name="cidade" not-null="true"/>
+        </property>
+        <property name="estado" type="string">
+            <column length="2" name="estado" not-null="true"/>
+        </property>
+        <property name="cep" type="string">
+            <column length="9" name="cep" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

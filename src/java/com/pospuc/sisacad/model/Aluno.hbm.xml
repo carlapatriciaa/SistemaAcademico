@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2017 13:56:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.pospuc.sisacad.model.Aluno" table="Aluno" catalog="SistemaAcademico" optimistic-lock="version">
+        <id name="matricula" type="java.lang.Integer">
+            <column name="matricula" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="100" not-null="true" />
+        </property>
+        <property name="dtNasc" type="date">
+            <column name="dtNasc" length="10" not-null="true" />
+        </property>
+        <property name="sexo" type="char">
+            <column name="sexo" length="1" not-null="true" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="14" not-null="true" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="12" not-null="true" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="14" not-null="true" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="14" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="turma" type="int">
+            <column name="turma" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="resources/css/estilos.css"/>
+        <title>Sistema de Controle Acadêmico</title>
+    </h:head>
+    <body>        
+        <h:form>
+            <p:growl autoUpdate="true" id="messages" />
+            <p:panel header="Sistema de Controle Acadêmico - Alterar Senha">
+                <h:panelGrid id="pgNovo" columns="2" cellpadding="4" style="margin:0 auto;">
+
+                    <p:outputLabel value="Senha Antiga: " style="font-weight:bold"/>
+                    <p:password value="#{mbAltSnh.senhaAntiga}"
+                                size="10" 
+                                required="true"
+                                requiredMessage="A senha antiga é obrigatória!"/>
+
+                    <p:outputLabel value="Senha: " style="font-weight:bold"/>
+                    <p:password id="senha" match="senha2" 
+                                value="#{mbAltSnh.senha}"
+                                size="10" maxlength="8" 
+                                required="true"
+                                requiredMessage="Insira uma nova senha!!!"
+                                validatorMessage="Senhas não coincidem!">
+                        <f:validateRegex pattern="^[a-zA-Z0-9]{4}[a-zA-Z0-9]*"/>
+                    </p:password>
+
+                    <p:outputLabel value="Confirmar senha: " style="font-weight:bold"/>
+                    <p:password id="senha2" size="10" maxlength="20"
+                                required="true"
+                                requiredMessage="Insira uma nova senha novamente!!!"/>
+                </h:panelGrid>
+
+                <h:panelGrid id="pgNovo2" columns="2" cellpadding="5" style="margin:0 auto;">  
+
+                    <p:commandLink id="backLink" title="Voltar" onclick="history.go(-1); return false;">
+                        <h:outputText value="Voltar" />
+                    </p:commandLink>
+
+                    <p:commandButton id="btnAlt" value="Alterar Senha" icon="ui-icon-unlocked" 
+                                     action="#{mbAltSnh.alteraSenha()}" 
+                                     ajax="false"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </body>
+</html>

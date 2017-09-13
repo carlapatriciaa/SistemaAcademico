@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/08/2017 13:56:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.pospuc.sisacad.model.Turma" table="Turma" catalog="SistemaAcademico" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="idCurso" type="int">
+            <column name="idCurso" not-null="true" />
+        </property>
+        <property name="nome" type="string">
+            <column name="nome" length="20" not-null="true" />
+        </property>
+        <property name="dtInicio" type="date">
+            <column name="dtInicio" length="10" not-null="true" />
+        </property>
+        <property name="dtFim" type="date">
+            <column name="dtFim" length="10" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
